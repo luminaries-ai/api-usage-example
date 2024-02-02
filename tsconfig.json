@@ -1,0 +1,21 @@
+{
+  "extends": "@tsconfig/recommended",
+  "compilerOptions": {
+    "outDir": "dist",
+    "lib": ["ES2021", "ES2022.Object", "DOM"],
+    "target": "ES2021",
+    "module": "nodenext",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "useDefineForClassFields": true,
+    "strictPropertyInitialization": false,
+  },
+  "exclude": ["node_modules/", "dist/", "tests/"],
+  "include": ["./src"]
+}
