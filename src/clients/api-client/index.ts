@@ -22,7 +22,6 @@ export type { CreateContentExtractionJob } from './models/CreateContentExtractio
 export { CreateMessageInput } from './models/CreateMessageInput.js';
 export type { CreatePersonGroupInput } from './models/CreatePersonGroupInput.js';
 export type { CreatePersonInput } from './models/CreatePersonInput.js';
-export type { ExampleValue } from './models/ExampleValue.js';
 export { Message } from './models/Message.js';
 export type { Organization } from './models/Organization.js';
 export type { Person } from './models/Person.js';

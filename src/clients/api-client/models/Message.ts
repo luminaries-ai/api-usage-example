@@ -10,11 +10,9 @@ export type Message = {
     /**
      * The message content
      */
-    message: string;
+    content: string;
     userId: string;
     userType: Message.userType;
-    personChannelId: (string | null);
-    organizationChannelId: (string | null);
     organizationId: string;
     createdAt: (string | null);
     respondedAt: (string | null);
@@ -22,8 +20,8 @@ export type Message = {
 };
 export namespace Message {
     export enum userType {
-        USER = 'user',
-        PERSONA = 'persona',
+        PERSON = 'person',
+        BOT = 'bot',
     }
     export enum status {
         COMPLETED = 'completed',

@@ -37,13 +37,13 @@ const respondentId = process.env.RESPONDENT_ID!;
 const conversation = await client.conversations.createConversation({
   requestBody: {
     name: `Test conversation: ${new Date().toISOString()}`,
-    respondentId: respondentId,
+    botId: respondentId,
     person: {
       externalId: personId,
     },
     uniqueId: personId,
-  }
-})
+  },
+});
 
 
 /**
@@ -62,13 +62,13 @@ while(userInput !== 'stop') {
   const [message, response] = await client.conversations.createMessage({
     conversationId: conversation.id,
     requestBody: {
-      message: userInput,
+      content: userInput,
       context: {},
       response: CreateMessageInput.response.SYNC,
     },
   });
   console.log(
-    `\n==================================\nBot: ${response.message}\n==================================\n`
+    `\n==================================\nBot: ${response.content}\n==================================\n`
   );
   userInput = await getResponseFromCommandLine(`Enter your next message: `);
 }

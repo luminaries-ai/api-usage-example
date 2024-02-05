@@ -31,66 +31,21 @@ export class ConversationsService {
         });
     }
     /**
-     * Create a message in a conversation
-     * @returns Message The newly created message and it's corresponding response message unless skipped
-     * @throws ApiError
-     */
-    public createMessage({
-        conversationId,
-        requestBody,
-    }: {
-        conversationId: string,
-        requestBody: CreateMessageInput,
-    }): CancelablePromise<Array<Message>> {
-        return this.httpRequest.request({
-            method: 'POST',
-            url: '/api/v2/conversations/{conversationId}/messages',
-            path: {
-                'conversationId': conversationId,
-            },
-            body: requestBody,
-            mediaType: 'application/json',
-        });
-    }
-    /**
-     * Paginate messages in a conversation. Ordered in reverse chronological order.
-     * @returns any test
-     * @throws ApiError
-     */
-    public getConversationMessages({
-        conversationId,
-        continuationToken,
-        limit,
-    }: {
-        conversationId: string,
-        continuationToken?: string,
-        limit?: number,
-    }): CancelablePromise<{
-        results: Array<Message>;
-        continuationToken?: string;
-    }> {
-        return this.httpRequest.request({
-            method: 'GET',
-            url: '/api/v2/conversations/{conversationId}/messages',
-            path: {
-                'conversationId': conversationId,
-            },
-            query: {
-                'continuationToken': continuationToken,
-                'limit': limit,
-            },
-        });
-    }
-    /**
      * Get a conversation
-     * @returns any List the conversations
+     * @returns any List the conversations for your organization
      * @throws ApiError
      */
-    public getConversations({
+    public listConversations({
         continuationToken,
-        limit,
+        limit = 25,
     }: {
+        /**
+         * The continuationToken is a token that allows you to continue fetching results from a paginated API. If the continuation token is not provided or is empty, the API will return the first page of results.
+         */
         continuationToken?: string,
+        /**
+         * The number of results that the API should return.
+         */
         limit?: number,
     }): CancelablePromise<{
         results: Array<Conversation>;
@@ -118,7 +73,14 @@ export class ConversationsService {
              * A name for the conversation
              */
             name?: string;
-            person?: (string | {
+            /**
+             * The Luminaries AI Person ID
+             */
+            personId?: string;
+            /**
+             * The details of the person
+             */
+            person?: {
                 /**
                  * Luminaries AI will use your organizations external identifier for deduplication. If none is provided, it will be left empty
                  */
@@ -131,11 +93,11 @@ export class ConversationsService {
                  * The family name of the person
                  */
                 familyName?: string;
-            });
+            };
             /**
              * The id of the bot that should respond
              */
-            respondentId: string;
+            botId: string;
             /**
              * If you have an external unique id for the conversation
              */
@@ -147,6 +109,63 @@ export class ConversationsService {
             url: '/api/v2/conversations',
             body: requestBody,
             mediaType: 'application/json',
+        });
+    }
+    /**
+     * Create a message in a conversation
+     * @returns Message The newly created message and it's corresponding response message unless skipped
+     * @throws ApiError
+     */
+    public createMessage({
+        conversationId,
+        requestBody,
+    }: {
+        conversationId: string,
+        requestBody: CreateMessageInput,
+    }): CancelablePromise<Array<Message>> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/api/v2/conversations/{conversationId}/messages',
+            path: {
+                'conversationId': conversationId,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+    /**
+     * Paginate messages in a conversation. Ordered in reverse chronological order.
+     * @returns any test
+     * @throws ApiError
+     */
+    public listConversationMessages({
+        conversationId,
+        continuationToken,
+        limit = 25,
+    }: {
+        conversationId: string,
+        /**
+         * The continuationToken is a token that allows you to continue fetching results from a paginated API. If the continuation token is not provided or is empty, the API will return the first page of results.
+         */
+        continuationToken?: string,
+        /**
+         * The number of results that the API should return.
+         */
+        limit?: number,
+    }): CancelablePromise<{
+        results: Array<Message>;
+        continuationToken?: string;
+    }> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/api/v2/conversations/{conversationId}/messages',
+            path: {
+                'conversationId': conversationId,
+            },
+            query: {
+                'continuationToken': continuationToken,
+                'limit': limit,
+            },
         });
     }
 }

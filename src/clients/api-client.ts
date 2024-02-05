@@ -7,7 +7,9 @@ export function createApiClient(
   const client = new ApiClient({
     BASE: "http://localhost:3336",
     HEADERS: {
-      authorization: `${clientId}:${secretKey}`,
+      authorization: `Basic ${Buffer.from(`${clientId}:${secretKey}`).toString(
+        "base64"
+      )}`,
     },
   });
   return client;
