@@ -13,6 +13,7 @@ export type Message = {
     content: string;
     userId: string;
     userType: Message.userType;
+    includeInHistory: boolean;
     organizationId: string;
     createdAt: (string | null);
     respondedAt: (string | null);
@@ -20,8 +21,8 @@ export type Message = {
 };
 export namespace Message {
     export enum userType {
-        PERSON = 'person',
         BOT = 'bot',
+        PERSON = 'person',
     }
     export enum status {
         COMPLETED = 'completed',

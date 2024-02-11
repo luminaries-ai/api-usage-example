@@ -31,13 +31,15 @@ export class ConversationsService {
         });
     }
     /**
-     * Get a conversation
+     * List conversations for an organization
      * @returns any List the conversations for your organization
      * @throws ApiError
      */
     public listConversations({
         continuationToken,
         limit = 25,
+        externalId,
+        includeMessages,
     }: {
         /**
          * The continuationToken is a token that allows you to continue fetching results from a paginated API. If the continuation token is not provided or is empty, the API will return the first page of results.
@@ -47,8 +49,18 @@ export class ConversationsService {
          * The number of results that the API should return.
          */
         limit?: number,
+        /**
+         * Just get the conversations of the user identified by an external id
+         */
+        externalId?: string,
+        /**
+         * Include messages in the response
+         */
+        includeMessages?: boolean,
     }): CancelablePromise<{
-        results: Array<Conversation>;
+        results: Array<(Conversation & {
+            messages?: Array<Message>;
+        })>;
         continuationToken?: string;
     }> {
         return this.httpRequest.request({
@@ -57,6 +69,8 @@ export class ConversationsService {
             query: {
                 'continuationToken': continuationToken,
                 'limit': limit,
+                'externalId': externalId,
+                'includeMessages': includeMessages,
             },
         });
     }
@@ -113,7 +127,7 @@ export class ConversationsService {
     }
     /**
      * Create a message in a conversation
-     * @returns Message The newly created message and it's corresponding response message unless skipped
+     * @returns Message The newly created message and it's corresponding response message if applicable
      * @throws ApiError
      */
     public createMessage({

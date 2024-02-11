@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "start": "tsx -r dotenv/config src/index.ts",
-    "generate-api-client": "npx openapi-typescript-codegen --input https://api.luminaries.ai/api/openapi-schema.json --output ./src/clients/api-client --name ApiClient --useOptions && npx fix-esm-import-path src/clients/api-client && curl https://api.luminaries.ai/api/openapi-schema.json -o openapi-schema.json"
+    "generate-api-client": "npx openapi-typescript-codegen --input https://api.luminaries.ai/api/openapi-schema.json --output ./src/clients/api-client --name ApiClient --useOptions && npx fix-esm-import-path src/clients/api-client && curl http://localhost:3336/api/openapi-schema.json -o openapi-schema.json"
   },
   "author": "Luminaries AI",
   "license": "MIT",

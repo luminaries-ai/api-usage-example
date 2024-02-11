@@ -12,11 +12,26 @@ export type CreateMessageInput = {
      */
     context: Record<string, any>;
     /**
+     * The type of user the message will be created for. If userType is `person`, the message will be created for a the given person, and the response will be given back based on the `response` field. For `bot` messages, these are simply added to the conversation, allowing the user to respond to them if necessary.
+     */
+    userType: CreateMessageInput.userType;
+    /**
+     * Can only be set for bot messages. If set to false, the bot will not take this message into account for future responses.
+     */
+    includeInHistory?: boolean;
+    /**
      * By default responses are generated asynchronously and the response can be streamed via the /messages/{id}/stream endpoint. If you want to skip the response, you can set this to 'skip'. If you want the response to be generated synchronously, you can set this to 'sync'
      */
     response?: CreateMessageInput.response;
 };
 export namespace CreateMessageInput {
+    /**
+     * The type of user the message will be created for. If userType is `person`, the message will be created for a the given person, and the response will be given back based on the `response` field. For `bot` messages, these are simply added to the conversation, allowing the user to respond to them if necessary.
+     */
+    export enum userType {
+        BOT = 'bot',
+        PERSON = 'person',
+    }
     /**
      * By default responses are generated asynchronously and the response can be streamed via the /messages/{id}/stream endpoint. If you want to skip the response, you can set this to 'skip'. If you want the response to be generated synchronously, you can set this to 'sync'
      */

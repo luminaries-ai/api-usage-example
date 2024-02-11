@@ -22,7 +22,6 @@ const personId = generateRandomId();
  */
 const respondentId = process.env.RESPONDENT_ID!;
 
-
 /**
  * Create a conversation between the person and the respondent
  * In your application the externalId should be the unique id of the individual as known by your system
@@ -63,6 +62,7 @@ while(userInput !== 'stop') {
     conversationId: conversation.id,
     requestBody: {
       content: userInput,
+      userType: CreateMessageInput.userType.PERSON,
       context: {},
       response: CreateMessageInput.response.SYNC,
     },
