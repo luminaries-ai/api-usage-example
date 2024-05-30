@@ -2,12 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type Organization = {
-    createdAt: string;
-    id: string;
+export type EngagementSeriesCreateInput = {
     name: string;
-    updatedAt: string;
-    logoUrl: string;
-    externalId: string;
+    description: (string | null);
+    botId: string;
 };
 

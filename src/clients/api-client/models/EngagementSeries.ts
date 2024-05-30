@@ -2,12 +2,13 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type Organization = {
-    createdAt: string;
+export type EngagementSeries = {
     id: string;
-    name: string;
+    createdAt: string;
     updatedAt: string;
-    logoUrl: string;
-    externalId: string;
+    organzationId: string;
+    name: string;
+    description: (string | null);
+    botId: string;
 };
 

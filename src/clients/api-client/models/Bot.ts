@@ -2,12 +2,12 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type Organization = {
-    createdAt: string;
+export type Bot = {
     id: string;
+    /**
+     * The name of the bot
+     */
     name: string;
-    updatedAt: string;
-    logoUrl: string;
-    externalId: string;
+    flowId?: string;
 };
 

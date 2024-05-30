@@ -3,20 +3,20 @@
 /* tslint:disable */
 /* eslint-disable */
 export type ContentExtractionJob = {
-    id: string;
-    organizationId: string;
     contentId: string;
     createdAt: string;
-    updatedAt: string;
+    id: string;
     status: ContentExtractionJob.status;
+    updatedAt: string;
+    organizationId: string;
 };
 export namespace ContentExtractionJob {
     export enum status {
         PENDING = 'pending',
         PROCESSING = 'processing',
-        COMPLETE = 'complete',
-        FAILED = 'failed',
         DONE = 'done',
+        FAILED = 'failed',
+        COMPLETE = 'complete',
     }
 }
 

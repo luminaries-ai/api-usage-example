@@ -2,12 +2,12 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type Organization = {
-    createdAt: string;
+export type Secret = {
     id: string;
+    createdAt?: string;
+    updatedAt?: string;
     name: string;
-    updatedAt: string;
-    logoUrl: string;
-    externalId: string;
+    value: string;
+    organizationId: string;
 };
 

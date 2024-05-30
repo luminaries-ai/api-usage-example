@@ -2,12 +2,12 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type Organization = {
-    createdAt: string;
-    id: string;
+export type Transformation = {
     name: string;
-    updatedAt: string;
-    logoUrl: string;
-    externalId: string;
+    id: string;
+    description: string;
+    inputSchema?: any;
+    outputSchema: any;
+    parametersSchema?: any;
 };
 

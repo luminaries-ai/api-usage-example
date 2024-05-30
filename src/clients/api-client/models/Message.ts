@@ -21,15 +21,23 @@ export type Message = {
 };
 export namespace Message {
     export enum userType {
-        BOT = 'bot',
         PERSON = 'person',
+        BOT = 'bot',
     }
     export enum status {
-        COMPLETED = 'completed',
-        FAILED = 'failed',
-        STREAMING = 'streaming',
         PENDING = 'pending',
+        CONTENT_IN_PROGRESS = 'content_in_progress',
         IN_PROGRESS = 'in_progress',
+        CONTENT_STREAMING = 'content_streaming',
+        CONTENT_FAILED = 'content_failed',
+        CONTENT_COMPLETED = 'content_completed',
+        COMPLETED = 'completed',
+        RECEIVED = 'received',
+        SENDING_QUEUED = 'sending_queued',
+        SENDING_IN_PROGRESS = 'sending_in_progress',
+        SENDING_FAILED = 'sending_failed',
+        SENDING_COMPLETE = 'sending_complete',
+        RECEIVER_UNSUBSCRIBED = 'receiver_unsubscribed',
     }
 }
 

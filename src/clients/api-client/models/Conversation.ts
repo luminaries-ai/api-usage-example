@@ -4,7 +4,6 @@
 /* eslint-disable */
 export type Conversation = {
     id: string;
-    conversationEngineVersion: string;
     createdAt: string;
     updatedAt: string;
     userId: string;
@@ -13,5 +12,7 @@ export type Conversation = {
     summary: string;
     type: string;
     uniqueKey: string;
+    executionGraphId: string;
+    executionGraphVersionId: string;
 };
 

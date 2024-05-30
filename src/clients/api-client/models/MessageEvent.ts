@@ -2,12 +2,10 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type Organization = {
-    createdAt: string;
+export type MessageEvent = {
     id: string;
-    name: string;
-    updatedAt: string;
-    logoUrl: string;
-    externalId: string;
+    messageId: string;
+    conversationId: string;
+    data: any;
 };
 

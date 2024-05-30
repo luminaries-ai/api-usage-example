@@ -29,16 +29,16 @@ export namespace CreateMessageInput {
      * The type of user the message will be created for. If userType is `person`, the message will be created for a the given person, and the response will be given back based on the `response` field. For `bot` messages, these are simply added to the conversation, allowing the user to respond to them if necessary.
      */
     export enum userType {
-        BOT = 'bot',
         PERSON = 'person',
+        BOT = 'bot',
     }
     /**
      * By default responses are generated asynchronously and the response can be streamed via the /messages/{id}/stream endpoint. If you want to skip the response, you can set this to 'skip'. If you want the response to be generated synchronously, you can set this to 'sync'
      */
     export enum response {
         ASYNC = 'async',
-        SKIP = 'skip',
         SYNC = 'sync',
+        SKIP = 'skip',
     }
 }
 

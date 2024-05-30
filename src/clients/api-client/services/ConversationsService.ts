@@ -4,11 +4,71 @@
 /* eslint-disable */
 import type { Conversation } from '../models/Conversation.js';
 import type { CreateMessageInput } from '../models/CreateMessageInput.js';
+import type { CreateStreamingMessageInput } from '../models/CreateStreamingMessageInput.js';
 import type { Message } from '../models/Message.js';
 import type { CancelablePromise } from '../core/CancelablePromise.js';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest.js';
 export class ConversationsService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
+    /**
+     * Create a message in a conversation and stream it's response
+     * @returns any Successful response
+     * @throws ApiError
+     */
+    public streamMessage({
+        conversationId,
+        requestBody,
+    }: {
+        conversationId: string,
+        requestBody: CreateStreamingMessageInput,
+    }): CancelablePromise<({
+        type: 'message-start';
+        /**
+         * Message ID
+         */
+        id: string;
+        /**
+         * User ID
+         */
+        userId: string;
+        /**
+         * User type
+         */
+        userType: string;
+        /**
+         * Organization ID
+         */
+        organizationId: string;
+        /**
+         * Creation timestamp
+         */
+        createdAt: string;
+        /**
+         * Message status
+         */
+        status: string;
+    } | {
+        type: 'content-delta';
+        /**
+         * Content delta
+         */
+        delta: string;
+    } | {
+        type: 'message-stop';
+    })> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/api/v2/conversations/{conversationId}/stream-message',
+            path: {
+                'conversationId': conversationId,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                404: `Message not found`,
+            },
+        });
+    }
     /**
      * Get a single message
      * @returns Message test
@@ -112,6 +172,10 @@ export class ConversationsService {
              * The id of the bot that should respond
              */
             botId: string;
+            /**
+             * The id of the version of the bot that should respond
+             */
+            versionId?: string;
             /**
              * If you have an external unique id for the conversation
              */
